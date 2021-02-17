@@ -1,10 +1,11 @@
 import React, { useState } from 'react'
 import { useDispatch } from 'react-redux';
 import { registerUser } from '../../../_actions/user_action';
+import { useHistory } from "react-router-dom";
 
 function RegisterPage(props) {
     const dispatch = useDispatch();
-
+    const history = useHistory();
     const [Email, setEmail] = useState("")
     const [Name, setName] = useState("")
     const [Password, setPassword] = useState("")
@@ -42,7 +43,7 @@ function RegisterPage(props) {
         dispatch(registerUser(body))
             .then(response => {
                 if(response.payload.success) {
-                    this.props.history.push("/login")
+                    history.push("/login")
                 } else {
                     alert("Failed to sign up")
                 }
@@ -54,7 +55,7 @@ function RegisterPage(props) {
             display: 'flex', justifyContent: 'center', alignItems: 'center'
             , width: '100%', height: '100vh'
         }}>
-            <from style={{ display: 'flex', flexDirection: 'column' }}
+            <form style={{ display: 'flex', flexDirection: 'column' }}
                 onSubmit={onSubmitHandler}
             >
                 <label>Email</label>
@@ -72,7 +73,7 @@ function RegisterPage(props) {
                 <button type="submit" >
                     회원가입
                 </button>
-            </from>
+            </form>
         </div>
     )
 }

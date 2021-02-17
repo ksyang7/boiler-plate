@@ -75,7 +75,6 @@ app.post('/api/users/login', (req, res) => {
 app.get('/api/users/auth', auth, (req, res)=>{
   // Authentication 이 True
   // role 0: 일반유저, role 1: admin,  role 2: 특정부서 admin
-  console('/api/users/auth >>>>>>>>>>>>>>>>');
   res.status(200).json({
     _id: req.user.id,
     isAdmin: req.user.role === 0 ? false : true,  
